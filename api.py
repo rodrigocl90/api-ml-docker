@@ -77,6 +77,14 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.get("/")
+def root():
+    return jsonify({
+        "ok": True,
+        "message": "Bienvenido a la API de predicción 🚀"
+    })
+
+
 @app.get("/health")
 def health():
     err = check_api_key(request)
@@ -129,5 +137,7 @@ def predict():
 # ------------------------
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", "5000"))
+    port = int(os.getenv("PORT", "5000"))  # Por defecto ahora 5000
     app.run(host="0.0.0.0", port=port, debug=True)
+
+
